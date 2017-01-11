@@ -19,6 +19,8 @@ shell_patterns=0    # expression type
 #    addition the files are untagged. You can use this macro
 #    only once per menu file entry or extension file entry,
 #    because next time there will be no tagged files.
+# %v and %V Similiar to the %t and %T, but expands to full
+#    names of tagged files.
 # %s and %S The selected files: The tagged files if
 #    there are any. Otherwise the current file.
 #

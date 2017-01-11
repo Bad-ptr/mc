@@ -2422,6 +2422,9 @@ Similar to the %t and %T macros, but in addition the files are untagged.
 You can use this macro only once per menu file entry or extension file
 entry, because next time there will be no tagged files.
 .TP
+.IR %v " and " %V
+Similiar to %t and %T, but expands to full names of tagged files.
+.TP
 .IR %s " and " %S
 The selected files: The tagged files if there are any. Otherwise the
 current file.
