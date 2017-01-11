@@ -870,9 +870,16 @@ expand_format (const WEdit * edit_widget, char c, gboolean do_quote)
 
     case 't':
     case 'u':
+    case 'v':
         {
             GString *block;
+            size_t block_size;
             int i;
+            const char *cwd;
+            char *qcwd;
+
+            block_size = 16;
+            qcwd = NULL;
 
             if (panel == NULL)
             {
@@ -880,7 +887,14 @@ expand_format (const WEdit * edit_widget, char c, gboolean do_quote)
                 goto ret;
             }
 
-            block = g_string_sized_new (16);
+            if ('v' == c_lc)
+            {
+                cwd = vfs_path_as_str (panel->cwd_vpath);
+                qcwd = quote_func (cwd, FALSE);
+                block_size = 64;
+            }
+
+            block = g_string_sized_new (block_size);
 
             for (i = 0; i < panel->dir.len; i++)
                 if (panel->dir.list[i].f.marked)
@@ -888,6 +902,13 @@ expand_format (const WEdit * edit_widget, char c, gboolean do_quote)
                     char *tmp;
 
                     tmp = quote_func (panel->dir.list[i].fname, FALSE);
+
+                    if (NULL != qcwd)
+                    {
+                        g_string_append (block, qcwd);
+                        g_string_append (block, PATH_SEP_STR);
+                    }
+
                     g_string_append (block, tmp);
                     g_string_append_c (block, ' ');
                     g_free (tmp);
