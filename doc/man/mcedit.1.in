@@ -192,9 +192,9 @@ there will be no tagged files.
 .TP
 .IR %v " and " %V
 Similiar to
-.I %t
+.I %u
 and
-.I %T
+.I %U
 , but expands to full names of tagged files.
 .TP
 .IR %s " and " %S

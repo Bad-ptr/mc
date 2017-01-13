@@ -910,7 +910,7 @@ expand_format (const WEdit * edit_widget, char c, gboolean do_quote)
                     g_string_append_c (block, ' ');
                     g_free (tmp);
 
-                    if (c_lc == 'u')
+                    if (c_lc == 'u' || 'v' == c_lc)
                         do_file_mark (panel, i, 0);
                 }
             result = g_string_free (block, FALSE);
